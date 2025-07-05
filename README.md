@@ -9,3 +9,5 @@ A little Project that I made, so that you can create and load Save States for BT
 Backups of SaveStates will always be created.
 You can also see all old save states by pressing the "Old Save States" Button.
 Advanced: By renaming either one of the old or backed up save states and moving them up 1 folder, then pressing the load button you can also load older save states. Only do this if you know what you're doing
+
+If you made a mistake or need any help, feel free to dm me on discord (pepf9). 

@@ -14,9 +14,9 @@ namespace SaveStateCreator
         public static readonly string saveToPath = Path.Combine(appdataPath, "Profile.Save");
         public static void CreateSaveState(string btdSavesPath)
         {
-            string oldSavesPath = Path.Combine(saveToPath, "OldSaves");
-            if (!Directory.Exists(saveToPath))
-                Directory.CreateDirectory(saveToPath);
+            string oldSavesPath = Path.Combine(appdataPath, "OldSaves");
+            if (!Directory.Exists(appdataPath))
+                Directory.CreateDirectory(appdataPath);
 
             if (!Directory.Exists(oldSavesPath))
                 Directory.CreateDirectory(oldSavesPath);
@@ -25,14 +25,14 @@ namespace SaveStateCreator
             {
                 if (File.Exists(saveToPath))
                 {
-                    string nameWithoutExtension = Path.GetFileNameWithoutExtension(saveToPath);
-                    string extension = Path.GetExtension(saveToPath);
+                    string nameWithoutExtension = "Profiles";
+                    string extension = "Save";
 
                     int index = 1;
                     string newOldPath;
                     do
                     {
-                        string newFileName = $"{nameWithoutExtension}{index}{extension}";
+                        string newFileName = $"{nameWithoutExtension}{index}.{extension}";
                         newOldPath = Path.Combine(oldSavesPath, newFileName);
                         index++;
                     } while (File.Exists(newOldPath));
@@ -45,14 +45,11 @@ namespace SaveStateCreator
                 throw new ArgumentException($"The file {btdSavesPath} does not exist or is not a valid save file.", nameof(btdSavesPath));
         }
 
-        public static void LoadSaveState(string btdSavesPath, string saveToPath)
+        public static void LoadSaveState(string btdSavesPath)
         {
-            string saveFileName = Path.GetFileName(btdSavesPath);
-            string sourcePath = Path.Combine(saveToPath, saveFileName);
-
-            if (!File.Exists(sourcePath))
+            if (!File.Exists(saveToPath))
                 throw new ArgumentException($"The path {saveToPath} does not contain a valid save file.", nameof(saveToPath));
-            File.Copy(sourcePath, btdSavesPath, true);
+            File.Copy(saveToPath, btdSavesPath, true);
         }
 
         public static string? GetSavePath()
@@ -65,6 +62,22 @@ namespace SaveStateCreator
             if (userId == null) return null;
 
             return Path.Combine(userId, "960090", "local", "link", "PRODUCTION", "current", "Profile.Save");
+        }
+
+        public static string CreateBackup()
+        {
+            string backupPath = Path.Combine(appdataPath, "backups");
+            if (!Directory.Exists(backupPath))
+                Directory.CreateDirectory(backupPath);
+            string backupFileName = $"Profile_{DateTime.Now:yyyyMMdd_HHmmss}.Save";
+            string backupFilePath = Path.Combine(backupPath, backupFileName);
+            if (File.Exists(saveToPath))
+            {
+                File.Copy(saveToPath, backupFilePath, true);
+                return backupFilePath;
+            }
+            else
+                throw new ArgumentException($"The path {saveToPath} does not contain a valid save file.", nameof(saveToPath));
         }
     }
 }

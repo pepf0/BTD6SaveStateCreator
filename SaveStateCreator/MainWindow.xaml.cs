@@ -23,16 +23,34 @@ namespace SaveStateCreator
             btd6SavePath = Saving.GetSavePath();
             if (!System.IO.Path.Exists(Saving.appdataPath))
                 Directory.CreateDirectory(System.IO.Path.Combine(Saving.appdataPath, "OldSaves"));
+            if (btd6SavePath is null)
+            {
+                MessageBox.Show("Could not find the BTD6 save file. Please ensure that BTD6 is installed via Steam and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
+            }
         }
-
         private void CreateSaveStateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Saving.CreateSaveState(btd6SavePath!);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadSaveStateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Saving.LoadSaveState(btd6SavePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ReportIssuesButton_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveStateCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="360" Width="640" Background="#0b1517">
+        Title="Save State Creator" Height="360" Width="640" Background="#0b1517">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

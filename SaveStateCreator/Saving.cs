@@ -43,6 +43,7 @@ namespace SaveStateCreator
             }
             else
                 throw new ArgumentException($"The file {btdSavesPath} does not exist or is not a valid save file.", nameof(btdSavesPath));
+            CreateBackup();
         }
 
         public static void LoadSaveState(string btdSavesPath)

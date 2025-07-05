@@ -64,7 +64,6 @@ namespace SaveStateCreator
             {
                 MessageBox.Show("Unable to open the Report Issues Page");
             }
-
         }
 
         private void OldSaveStatesButton_Click(object sender, RoutedEventArgs e)
@@ -77,6 +76,19 @@ namespace SaveStateCreator
             catch
             {
                 MessageBox.Show("Could not open old Save States folder.");
+            }
+        }
+
+        private void HowToUseButton_Click(object sender, RoutedEventArgs e)
+        {
+            var url = "https://github.com/pepf0/BTD6SaveStateCreator/blob/master/README.md";
+            try
+            {
+                Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            }
+            catch
+            {
+                MessageBox.Show("Unable to open the Guide Page");
             }
         }
     }

@@ -41,7 +41,7 @@
                 <Label Content="Old Save States" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
             </Viewbox>
         </Button>
-        <Button Grid.Row="3" Grid.Column="0" Margin="10" Click="OldSaveStatesButton_Click" Background="#1f313d">
+        <Button Grid.Row="3" Grid.Column="0" Margin="10" Click="HowToUseButton_Click" Background="#1f313d">
             <Viewbox>
                 <Label Content="How to use" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
             </Viewbox>

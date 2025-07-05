@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveStateCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="360" Width="640" Background="">
     <Grid>
-    
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Stretch="Uniform">
+            <Label Content="BTD6 Save State Creator" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Viewbox>
+        <Button Grid.Row="1" Grid.Column="0" Margin="10" Click="CreateSaveStateButton_Click">
+            <Viewbox>
+                <Label Content="Create Save State" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Viewbox>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="1" Margin="10" Click="LoadSaveStateButton_Click">
+            <Viewbox>
+                <Label Content="Load Save State" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Viewbox>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="0" Margin="10" Click="ReportIssuesButton_Click">
+            <Viewbox>
+                <Label Content="Report Issues" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Viewbox>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1" Margin="10" Click="OldSaveStatesButton_Click">
+            <Viewbox>
+                <Label Content="Old Save States" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Viewbox>
+        </Button>
     </Grid>
 </Window>

@@ -12,7 +12,7 @@ namespace SaveStateCreator
     {
         public static readonly string appdataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BTD6SaveStateCreator");
         public static readonly string saveToPath = Path.Combine(appdataPath, "Profile.Save");
-        static void CreateSaveState(string btdSavesPath)
+        public static void CreateSaveState(string btdSavesPath)
         {
             string oldSavesPath = Path.Combine(saveToPath, "OldSaves");
             if (!Directory.Exists(saveToPath))
@@ -45,7 +45,7 @@ namespace SaveStateCreator
                 throw new ArgumentException($"The file {btdSavesPath} does not exist or is not a valid save file.", nameof(btdSavesPath));
         }
 
-        static void LoadSaveState(string btdSavesPath, string saveToPath)
+        public static void LoadSaveState(string btdSavesPath, string saveToPath)
         {
             string saveFileName = Path.GetFileName(btdSavesPath);
             string sourcePath = Path.Combine(saveToPath, saveFileName);
@@ -55,7 +55,7 @@ namespace SaveStateCreator
             File.Copy(sourcePath, btdSavesPath, true);
         }
 
-        static string? GetSavePath()
+        public static string? GetSavePath()
         {
             var steamPath = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam")?.GetValue("SteamPath") as string;
             if (steamPath == null) return null;

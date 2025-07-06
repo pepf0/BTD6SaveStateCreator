@@ -85,6 +85,12 @@
                 <Label Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
             </Viewbox>
         </Button>
-        
+
+        <Button Name="ButtonGoBack" Grid.Row="3" Grid.Column="0" Margin="10" Click="ButtonGoBack_Click" Background="#1f313d" Visibility="Collapsed">
+            <Viewbox>
+                <Label Content="Go back" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
+            </Viewbox>
+        </Button>
+
     </Grid>
 </Window>

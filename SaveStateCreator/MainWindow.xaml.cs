@@ -53,6 +53,7 @@ namespace SaveStateCreator
             StackPanelLoadSaves.Visibility = Visibility.Visible;
             ScrollViewerLoadSaves.Visibility = Visibility.Visible;
             LabelTitle.Visibility = Visibility.Visible;
+            ButtonGoBack.Visibility = Visibility.Visible;
             LabelTitle.Content = "Select a Save State to Load:";
             if (!Directory.Exists(Saving.appdataPath))
                 return;
@@ -156,6 +157,7 @@ namespace SaveStateCreator
             ScrollViewerEditSaves.Visibility = Visibility.Visible;
             LabelTitle.Visibility = Visibility.Visible;
             LabelTitle.Content = "Select a Save State to Edit:";
+            ButtonGoBack.Visibility = Visibility.Visible;
             if (!Directory.Exists(Saving.appdataPath))
                 return;
 
@@ -246,7 +248,10 @@ namespace SaveStateCreator
                 LabelEditInfoCreation.Visibility = Visibility.Collapsed;
                 ButtonDeleteFile.Visibility = Visibility.Collapsed;
                 ButtonRenameFile.Visibility = Visibility.Collapsed;
+                ButtonGoBack.Visibility = Visibility.Collapsed;
                 LabelTitle.Content = LABEL_TITLE_CONTENT;
+                StackPanelEditSaves.Children.Clear();
+                StackPanelLoadSaves.Children.Clear();
             }
             else
             {
@@ -277,6 +282,10 @@ namespace SaveStateCreator
                         if (button.Tag as string == b.Tag as string)
                         {
                             StackPanelEditSaves.Children.Remove(button);
+                            LabelEditInfo.Visibility = Visibility.Collapsed;
+                            LabelEditInfoCreation.Visibility = Visibility.Collapsed;
+                            ButtonDeleteFile.Visibility = Visibility.Collapsed;
+                            ButtonReportIssues.Visibility = Visibility.Collapsed;
                             break;
                         }
                     }
@@ -333,6 +342,11 @@ namespace SaveStateCreator
                     MessageBox.Show($"An error occurred while renaming the save state: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void ButtonGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            ShowMainGUI(true);
         }
     }
 }

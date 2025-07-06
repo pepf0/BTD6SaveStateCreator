@@ -16,13 +16,14 @@ namespace SaveStateCreator
     public partial class MainWindow : Window
     {
         string? btd6SavePath;
+        public static string currentSaveName = "Profile.Save";
         public MainWindow()
         {
             InitializeComponent();
 
             btd6SavePath = Saving.GetSavePath();
             if (!System.IO.Path.Exists(Saving.appdataPath))
-                Directory.CreateDirectory(System.IO.Path.Combine(Saving.appdataPath, "OldSaves"));
+                Directory.CreateDirectory(System.IO.Path.Combine(Saving.appdataPath));
             if (btd6SavePath is null)
             {
                 MessageBox.Show("Could not find the BTD6 save file. Please ensure that BTD6 is installed via Steam and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -33,7 +34,9 @@ namespace SaveStateCreator
         {
             try
             {
-                Saving.CreateSaveState(btd6SavePath!);
+                SaveNameQueryWindow saveNameQueryWindow = new SaveNameQueryWindow();
+                saveNameQueryWindow.ShowDialog();
+                Saving.CreateSaveState(btd6SavePath!, currentSaveName);
             }
             catch (Exception ex)
             {
@@ -43,14 +46,15 @@ namespace SaveStateCreator
 
         private void LoadSaveStateButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Saving.LoadSaveState(btd6SavePath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            ShowMainGUI(false);
+            //try
+            //{
+            //    Saving.LoadSaveState(btd6SavePath);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
 
         private void ReportIssuesButton_Click(object sender, RoutedEventArgs e)
@@ -66,17 +70,9 @@ namespace SaveStateCreator
             }
         }
 
-        private void OldSaveStatesButton_Click(object sender, RoutedEventArgs e)
+        private void EditSaveStatesButton_Click(object sender, RoutedEventArgs e)
         {
-            string folderPath = System.IO.Path.Combine(Saving.appdataPath, "OldSaves");
-            try
-            {
-                Process.Start(new ProcessStartInfo("explorer.exe", folderPath) { UseShellExecute = true });
-            }
-            catch
-            {
-                MessageBox.Show("Could not open old Save States folder.");
-            }
+
         }
 
         private void HowToUseButton_Click(object sender, RoutedEventArgs e)
@@ -89,6 +85,30 @@ namespace SaveStateCreator
             catch
             {
                 MessageBox.Show("Unable to open the Guide Page");
+            }
+        }
+
+        private void ShowMainGUI(bool show)
+        {
+            if (show)
+            {
+                ButtonCreateSaveState.Visibility = Visibility.Visible;
+                ButtonLoadSaveState.Visibility = Visibility.Visible;
+                ButtonReportIssues.Visibility = Visibility.Visible;
+                ButtonEditSaveStates.Visibility = Visibility.Visible;
+                ButtonHowToUse.Visibility = Visibility.Visible;
+                LabelMadeBy.Visibility = Visibility.Visible;
+                LabelTitle.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtonCreateSaveState.Visibility = Visibility.Collapsed;
+                ButtonLoadSaveState.Visibility = Visibility.Collapsed;
+                ButtonReportIssues.Visibility = Visibility.Collapsed;
+                ButtonEditSaveStates.Visibility = Visibility.Collapsed;
+                ButtonHowToUse.Visibility = Visibility.Collapsed;
+                LabelMadeBy.Visibility = Visibility.Collapsed;
+                LabelTitle.Visibility = Visibility.Collapsed;
             }
         }
     }

@@ -2,12 +2,8 @@
 A little Project that I made, so that you can create and load Save States for BTD6. Can be useful in Boss Events! 
 
 # How to create a Save State
-1. Go to the BTD6 Main Menu. Then press the "Create Save State" Button. Now the current Save State has been saved.
-2. If you want to return to the Save State, just close BTD6 and press the "Load Save State" Button. 
-
-# Extra Infos
-Backups of SaveStates will always be created.
-You can also see all old save states by pressing the "Old Save States" Button.
-Advanced: By renaming either one of the old or backed up save states and moving them up 1 folder, then pressing the load button you can also load older save states. Only do this if you know what you're doing
+1. Go to the BTD6 Main Menu. Then press the "Create Save State" Button and name your save whatever you want. Now the current Save State has been saved.
+2. If you want to return to a Save State, just close BTD6 and press the "Load Save State" Button, then select the save you want to load.
+3. If you wanna Rename or Delete Saves, just press on "Manage Save States" 
 
 If you made a mistake or need any help, feel free to dm me on discord (pepf9). 

@@ -285,7 +285,7 @@ namespace SaveStateCreator
                             LabelEditInfo.Visibility = Visibility.Collapsed;
                             LabelEditInfoCreation.Visibility = Visibility.Collapsed;
                             ButtonDeleteFile.Visibility = Visibility.Collapsed;
-                            ButtonReportIssues.Visibility = Visibility.Collapsed;
+                            ButtonRenameFile.Visibility = Visibility.Collapsed;
                             break;
                         }
                     }

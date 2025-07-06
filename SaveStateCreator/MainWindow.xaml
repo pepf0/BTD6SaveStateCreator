@@ -20,7 +20,7 @@
             <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
 
-        <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Stretch="Uniform">
+        <Viewbox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Stretch="Uniform">
             <Label Name="LabelTitle" Content="BTD6 Save State Creator V2.0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
         </Viewbox>
         <Button Name="ButtonCreateSaveState" Grid.Row="1" Grid.Column="0" Margin="10" Click="CreateSaveStateButton_Click" Background="#1f313d" Grid.ColumnSpan="2">
@@ -35,7 +35,7 @@
         </Button>
         <Button Name="ButtonEditSaveStates" Grid.Row="2" Grid.Column="0" Margin="10" Click="EditSaveStatesButton_Click" Background="#1f313d" Grid.ColumnSpan="2">
             <Viewbox>
-                <Label Content="Edit Save States" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
+                <Label Content="Manage Save States" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
             </Viewbox>
         </Button>
         <Button Name="ButtonReportIssues" Grid.Row="2" Grid.Column="2" Margin="10" Click="ReportIssuesButton_Click" Background="#1f313d" Grid.ColumnSpan="2">
@@ -58,6 +58,33 @@
         <ScrollViewer Name="ScrollViewerEditSaves" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Visibility="Collapsed">
             <StackPanel Name="StackPanelEditSaves" Orientation="Vertical" Margin="10" Visibility="Collapsed"/>
         </ScrollViewer>
-
+        <Viewbox Grid.Column="3" Grid.ColumnSpan="4" Stretch="Uniform">
+            <Label Name="LabelLoadInfo" Margin="5" Visibility="Collapsed" Foreground="#adfef6"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" Stretch="Uniform">
+            <Label Name="LabelLoadInfoCreation" Margin="5" Visibility="Collapsed" Foreground="#adfef6"/>
+        </Viewbox>
+        <Button Name="ButtonLoadFile" Grid.Row="2" Grid.Column="4" Margin="10" Click="ButtonLoadFile_Click" Background="#1f313d" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Viewbox>
+                <Label Content="Load" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
+            </Viewbox>
+        </Button>
+        <Viewbox Grid.Column="3" Grid.ColumnSpan="4" Stretch="Uniform">
+            <Label Name="LabelEditInfo" Margin="5" Visibility="Collapsed" Foreground="#adfef6"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="4" Stretch="Uniform">
+            <Label Name="LabelEditInfoCreation" Margin="5" Visibility="Collapsed" Foreground="#adfef6"/>
+        </Viewbox>
+        <Button Name="ButtonRenameFile" Grid.Row="2" Grid.Column="4" Margin="10" Click="ButtonRenameFile_Click"  Background="#1f313d" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Viewbox>
+                <Label Content="Rename" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
+            </Viewbox>
+        </Button>
+        <Button Name="ButtonDeleteFile" Grid.Row="3" Grid.Column="4" Margin="10" Click="ButtonDeleteFile_Click" Background="#1f313d" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Viewbox>
+                <Label Content="Delete" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
+            </Viewbox>
+        </Button>
+        
     </Grid>
 </Window>

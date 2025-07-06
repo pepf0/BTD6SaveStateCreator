@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Stretch="Uniform">
-            <Label Name="LabelTitle" Content="BTD6 Save State Creator V1.0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
+            <Label Name="LabelTitle" Content="BTD6 Save State Creator V2.0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
         </Viewbox>
         <Button Name="ButtonCreateSaveState" Grid.Row="1" Grid.Column="0" Margin="10" Click="CreateSaveStateButton_Click" Background="#1f313d" Grid.ColumnSpan="2">
             <Viewbox>
@@ -52,7 +52,7 @@
         <Viewbox Grid.Row="3" Grid.Column="2" Margin="10" Grid.ColumnSpan="2">
             <Label Name="LabelMadeBy" Content="made by Pepf (Discord: pepf9)" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
         </Viewbox>
-        <StackPanel Name="StackPanelLoadSaves" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="10" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <StackPanel Name="StackPanelLoadSaves" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="10" Grid.RowSpan="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
         <StackPanel Name="StackPanelEditSaves" Orientation="Vertical" Margin="10"/>
 
     </Grid>

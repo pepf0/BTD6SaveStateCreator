@@ -17,10 +17,13 @@ namespace SaveStateCreator
     {
         string? btd6SavePath;
         public static string currentSaveName = "Profile.Save";
+        const string LABEL_TITLE_CONTENT = "BTD6 Save State Creator V2.0";
         public MainWindow()
         {
             InitializeComponent();
 
+            LabelTitle.Content = LABEL_TITLE_CONTENT;
+            ShowMainGUI(true);
             btd6SavePath = Saving.GetSavePath();
             if (!System.IO.Path.Exists(Saving.appdataPath))
                 Directory.CreateDirectory(System.IO.Path.Combine(Saving.appdataPath));
@@ -47,16 +50,77 @@ namespace SaveStateCreator
         private void LoadSaveStateButton_Click(object sender, RoutedEventArgs e)
         {
             ShowMainGUI(false);
-            //try
-            //{
-            //    Saving.LoadSaveState(btd6SavePath);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            LabelTitle.Visibility = Visibility.Visible;
+            LabelTitle.Content = "Select a Save State to Load:";
+            if (!Directory.Exists(Saving.appdataPath))
+                return;
+
+            foreach (string file in Directory.GetFiles(Saving.appdataPath))
+            {
+                string fileName = System.IO.Path.GetFileName(file);
+
+                Button fileButton = new Button
+                {
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    Height = 50,
+                    Margin = new Thickness(5),
+                    Background = new SolidColorBrush(Color.FromRgb(0x1f, 0x31, 0x3d)),
+                    Tag = file
+                };
+
+                fileButton.Click += ButtonSelectFile_Click;
+
+                Viewbox viewbox = new Viewbox
+                {
+                    Stretch = Stretch.Uniform,
+                    StretchDirection = StretchDirection.Both
+                };
+
+                Label label = new Label
+                {
+                    Content = fileName,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Foreground = new SolidColorBrush(Color.FromRgb(0xad, 0xfe, 0xf6)),
+                    Padding = new Thickness(0)
+                };
+
+                viewbox.Child = label;
+                fileButton.Content = viewbox;
+
+                StackPanelLoadSaves.Children.Add(fileButton);
+            }
         }
 
+        private void ButtonSelectFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button b)
+            {
+                string filePath = b.Tag as string;
+                if (filePath != null && File.Exists(filePath))
+                {
+                    try
+                    {
+                        Saving.LoadSaveState(btd6SavePath!, System.IO.Path.GetFileName(filePath));
+                        ShowMainGUI(true);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred while loading the save state: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid save state file selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            LabelTitle.Content = LABEL_TITLE_CONTENT;
+            StackPanelLoadSaves.Children.Clear();
+        }
+        private void EditSaveStatesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void ReportIssuesButton_Click(object sender, RoutedEventArgs e)
         {
             var url = "https://github.com/pepf0/BTD6SaveStateCreator/issues/new";
@@ -70,10 +134,7 @@ namespace SaveStateCreator
             }
         }
 
-        private void EditSaveStatesButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void HowToUseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -99,6 +160,7 @@ namespace SaveStateCreator
                 ButtonHowToUse.Visibility = Visibility.Visible;
                 LabelMadeBy.Visibility = Visibility.Visible;
                 LabelTitle.Visibility = Visibility.Visible;
+                StackPanelLoadSaves.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -109,6 +171,7 @@ namespace SaveStateCreator
                 ButtonHowToUse.Visibility = Visibility.Collapsed;
                 LabelMadeBy.Visibility = Visibility.Collapsed;
                 LabelTitle.Visibility = Visibility.Collapsed;
+                StackPanelLoadSaves.Visibility = Visibility.Visible;
             }
         }
     }

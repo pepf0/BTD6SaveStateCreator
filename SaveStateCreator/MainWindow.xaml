@@ -52,8 +52,12 @@
         <Viewbox Grid.Row="3" Grid.Column="2" Margin="10" Grid.ColumnSpan="2">
             <Label Name="LabelMadeBy" Content="made by Pepf (Discord: pepf9)" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#adfef6"/>
         </Viewbox>
-        <StackPanel Name="StackPanelLoadSaves" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="10" Grid.RowSpan="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"/>
-        <StackPanel Name="StackPanelEditSaves" Orientation="Vertical" Margin="10"/>
+        <ScrollViewer Name="ScrollViewerLoadSaves" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <StackPanel Name="StackPanelLoadSaves" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="10" Grid.RowSpan="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Visibility="Collapsed"/>
+        </ScrollViewer>
+        <ScrollViewer Name="ScrollViewerEditSaves" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <StackPanel Name="StackPanelEditSaves" Orientation="Vertical" Margin="10" Visibility="Collapsed"/>
+        </ScrollViewer>
 
     </Grid>
 </Window>

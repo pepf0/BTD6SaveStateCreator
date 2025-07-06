@@ -50,6 +50,9 @@ namespace SaveStateCreator
         private void LoadSaveStateButton_Click(object sender, RoutedEventArgs e)
         {
             ShowMainGUI(false);
+            StackPanelLoadSaves.Children.Clear();
+            StackPanelLoadSaves.Visibility = Visibility.Visible;
+            ScrollViewerLoadSaves.Visibility = Visibility.Visible;
             LabelTitle.Visibility = Visibility.Visible;
             LabelTitle.Content = "Select a Save State to Load:";
             if (!Directory.Exists(Saving.appdataPath))
@@ -78,7 +81,7 @@ namespace SaveStateCreator
 
                 Label label = new Label
                 {
-                    Content = fileName,
+                    Content = System.IO.Path.GetFileNameWithoutExtension(fileName),
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Foreground = new SolidColorBrush(Color.FromRgb(0xad, 0xfe, 0xf6)),
@@ -116,6 +119,8 @@ namespace SaveStateCreator
             }
             LabelTitle.Content = LABEL_TITLE_CONTENT;
             StackPanelLoadSaves.Children.Clear();
+            StackPanelLoadSaves.Visibility = Visibility.Collapsed;
+            ScrollViewerLoadSaves.Visibility = Visibility.Collapsed;
         }
         private void EditSaveStatesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -161,6 +166,9 @@ namespace SaveStateCreator
                 LabelMadeBy.Visibility = Visibility.Visible;
                 LabelTitle.Visibility = Visibility.Visible;
                 StackPanelLoadSaves.Visibility = Visibility.Collapsed;
+                StackPanelEditSaves.Visibility = Visibility.Collapsed;
+                ScrollViewerEditSaves.Visibility = Visibility.Collapsed;
+                ScrollViewerLoadSaves.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -171,7 +179,6 @@ namespace SaveStateCreator
                 ButtonHowToUse.Visibility = Visibility.Collapsed;
                 LabelMadeBy.Visibility = Visibility.Collapsed;
                 LabelTitle.Visibility = Visibility.Collapsed;
-                StackPanelLoadSaves.Visibility = Visibility.Visible;
             }
         }
     }
